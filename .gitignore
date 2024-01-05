@@ -1,24 +1,45 @@
-# Compiled class file
-*.class
+import java.util.Scanner;
 
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+public class loginproject {
+    public static void main(String[] args) {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            int count2 = 2;
+            int stop = 0;
+            int login;
+            int password;
+            while(count2 > 1) {
+                System.out.println("Please enter your login and password.");
+                int count = 0;
+                while (count < 3) {
+                    login = scanner.nextInt();
+                    password = scanner.nextInt();
+                    if (login != 12345 && password != 67890) {
+                        if (count == 0 || count == 1) {
+                            System.out.println("Your login or password is not correct, please try again");
+                        } else {
+                            System.out.println("You entered your password or login incorrectly 3 times, next attempt in 5 seconds");
+                            break;
+                        }
+                    } else if (login == 12345 && password == 67890) {
+                        System.out.println("You have successfully logged into your account");
+                        stop++;
+                        break;
+                    }
+                    if(count == 2) {
+                        scanner.close();
+                    }
+                    count++;
+                }
+                count2++;
+                if(stop == 1) {
+                    break;
+                }
+                Thread.sleep(5000);
+            }
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+    }
+}
